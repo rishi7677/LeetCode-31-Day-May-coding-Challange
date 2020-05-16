@@ -1,0 +1,35 @@
+class Solution:
+    def maxSubarraySumCircular(self, A: List[int]) -> int:
+    
+    
+        '''ar=A[:]+A[:]
+        x=len(A)
+        mx=float('-inf')
+        def kaden(l):
+            mseh=l[0]
+            mssf=l[0]
+            for i in l[1:]:
+                mseh=max(mseh+i,i)
+                mssf=max(mssf,mseh)
+            return mssf
+        for i in range(x):
+            mx=max(mx,kaden(ar[i:i+x]))
+        return mx'''
+        
+        
+        if len(A) == 0:
+            return 0
+        s=sum(A)
+        mxt,mxsf,mnsf,mnt = A[0], A[0], A[0], A[0]
+        for i in A[1:]:
+            mxsf = max(i, mxsf +i)
+            mxt = max(mxt, mxsf)            
+            
+            mnsf = min(i, mnsf +i)
+            mnt = min(mnt, mnsf)          
+        if(s == mnsf):
+            return mxt
+        
+        return max(s - mnt, mxt)
+            
+        
