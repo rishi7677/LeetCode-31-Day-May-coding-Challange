@@ -1,0 +1,13 @@
+class Solution:
+    def checkStraightLine(self, cd: List[List[int]]) -> bool:
+        if(len(cd)<=2):
+            return True
+        if(cd[1][0]==cd[0][0]):
+            slope=-1
+        else:
+            slope=(cd[1][1]-cd[0][1])/(cd[1][0]-cd[0][0])
+        for i in range(2,len(cd)):
+            if((cd[i][1]-cd[0][1])/(cd[i][0]-cd[0][0])!=slope):
+                return False
+        return True
+        
