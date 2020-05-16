@@ -1,0 +1,12 @@
+class Solution:
+    def findComplement(self, num: int) -> int:
+        
+        bb=bin(num).replace("0b","")
+        bb=list(bb)
+        for i in range(len(bb)):
+            if(bb[i]=='0'):
+                bb[i]='1'
+            else:
+                bb[i]='0'
+        bb="".join(bb)
+        return(int(bb,2))
