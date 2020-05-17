@@ -1,0 +1,35 @@
+from collections import Counter
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+    
+    
+    
+        '''ll=[]
+        p=sorted(p)
+        for i in range(len(s)-len(p) +1):
+            #if((len(set(s[i:i+len(p)])-set(p))==0 and len(set(p)-set(s[i:i+len(p)]))==0) or (sorted(s[i:i+len(p)])==sorted(p))):
+            if(sorted(s[i:i+len(p)])==(p)):
+                ll.append(i)
+        return ll'''
+        
+        
+        
+        if len(s)<len(p) or not(set(s)>=set(p)):
+            return []
+
+        np = len(p)
+        p_count = Counter(p)
+        i_count = Counter(s[:np])
+        
+        ans = []
+        if p_count == i_count:
+            ans.append(0)
+        
+        for i, (out, add) in enumerate(zip(s, s[np:])):
+            i_count[out] -= 1
+            i_count[add] += 1
+            if p_count == +i_count:
+                ans.append(i+1)
+        
+        return ans
+        
