@@ -1,0 +1,24 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def oddEvenList(self, head: ListNode) -> ListNode:
+        od=ListNode()        #odd head pointer
+        odt=od               #odd tail pointer
+        ev=ListNode()        #even head pointer
+        evt=ev               #even tail pointer
+        flip=1               #parity variable as we have to take the variables alternatively
+        while(head):
+            if(flip==1):
+                odt.next=head
+                odt=odt.next
+            else:
+                evt.next=head
+                evt=evt.next
+            head=head.next
+            flip*=-1
+        evt.next=None
+        odt.next=ev.next
+        return od.next
