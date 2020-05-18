@@ -1,0 +1,11 @@
+This is a simple Sliding Window solution and can be optimized using 2 arrays of size 26 storing the frequencies of the characters of the string.
+
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        s1="".join(sorted(s1))
+        l2=len(s1)
+        for i in range(len(s2)-len(s1)+1):
+            if(s1=="".join(sorted(s2[i:i+l2]))):
+                return True
+        return False
+        
