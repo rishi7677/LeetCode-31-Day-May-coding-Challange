@@ -1,0 +1,25 @@
+from collections import defaultdict as dd
+class Solution:
+    def canFinish(self, nc: int, pr: List[List[int]]) -> bool:
+        g=dd(list)
+        ind=dd(int)
+        res=[]
+        if(not len(pr)):
+            return True
+        for u,v in pr:
+            g[u].append(v)
+            ind[v]+=1
+        def kann(n):
+            l=[]
+            for i in range(n):
+                if(ind[i]==0):
+                    l.append(i)
+            while(len(l)):
+                x=l.pop()
+                res.append(x)
+                for nd in g[x]:
+                    ind[nd]-=1
+                    if(ind[nd]==0):
+                        l.append(nd)
+            return(len(res)==n)
+        return(kann(nc))
